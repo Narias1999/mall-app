@@ -10,11 +10,27 @@ function buildCategoriesPath(ids, actualIndex) {
         path += ids[i] + '/'
     }
 
-    path = path.substr(0, path.length-1);
-    
+    path = path.substr(0, path.length - 1);
+
     return path
 }
 
+function isNumber(evt) {
+    // Validate if is a no number character
+    evt = evt ? evt : window.event;
+    const charCode = evt.which ? evt.which : evt.keyCode;
+    if (
+        charCode > 31 &&
+        (charCode < 48 || charCode > 57) &&
+        charCode !== 46
+    ) {
+        evt.preventDefault();
+    } else {
+        return true;
+    }
+}
+
 export {
-    buildCategoriesPath
+    buildCategoriesPath,
+    isNumber
 }

@@ -26,7 +26,6 @@
               v-model="priceRange[0]"
               class="mt-0"
               hide-details
-              box
               @keypress="isNumber($event)"
               label="Precio min."
               type="number"
@@ -42,7 +41,6 @@
               v-model="priceRange[1]"
               class="mt-0"
               hide-details
-              box
               @keypress="isNumber($event)"
               pattern="^[0-9]+"
               label="Precio max."
@@ -57,7 +55,6 @@
               class="mt-0"
               pattern="^[0-9]+"
               hide-details
-              box
               @keypress="isNumber($event)"
               label="Cantidad en stock."
               type="number"
@@ -87,7 +84,7 @@
 
 <script>
 import { getCategory } from "./../api";
-import { buildCategoriesPath } from "./../utils";
+import { buildCategoriesPath, isNumber } from "./../utils";
 
 import Category from "./../components/Category.vue";
 import Product from "./../components/Product.vue";
@@ -110,20 +107,7 @@ export default {
       const { currentRoute } = this.$router;
       this.$router.push(`${currentRoute.path}/${id}`);
     },
-    isNumber(evt) {
-      // Validate if is a no number character
-      evt = evt ? evt : window.event;
-      const charCode = evt.which ? evt.which : evt.keyCode;
-      if (
-        charCode > 31 &&
-        (charCode < 48 || charCode > 57) &&
-        charCode !== 46
-      ) {
-        evt.preventDefault();
-      } else {
-        return true;
-      }
-    },
+    isNumber,
     addToCart(product) {
       const productToSend = {
         id: product.id,

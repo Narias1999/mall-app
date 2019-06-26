@@ -10,7 +10,6 @@ const vuexLocal = new VuexPersistence({
   })
 
 const store = new Vuex.Store({
-    strict: true,
     state: {
         products,
         shoppingCart: {
